@@ -1,3 +1,8 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+torchaudio
+easyocr
 fastapi
 uvicorn
 pdf2image
@@ -5,3 +10,7 @@ pytesseract
 Pillow
 python-multipart
 ocrmypdf
+opencv-python
+numpy
+reportlab
+scipy
