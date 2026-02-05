@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     qpdf \
     libgl1 \
     libglib2.0-0 \
+    pngquant \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -32,20 +33,15 @@ COPY arial.ttf /usr/share/fonts/truetype/arial.ttf
 # ==========================================
 
 # יצירת התיקייה שבה EasyOCR מחפש את המודלים כברירת מחדל
-RUN mkdir -p /root/.EasyOCR/model
-
-# הורדת מודל הזיהוי (Detection)
-RUN wget https://github.com/JaidedAI/EasyOCR/releases/download/v1.3/english_g2.zip
-RUN wget https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/craft_mlt_25k.zip
-
-RUN unzip english_g2.zip -d ~/.EasyOCR/model
-RUN unzip craft_mlt_25k.zip -d ~/.EasyOCR/model
+RUN python -c "import easyocr; easyocr.Reader(['en'], gpu=False)"
 
 COPY main.py ./
 
+COPY correct.py ./
+
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "correct:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
 

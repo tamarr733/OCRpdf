@@ -1,0 +1,33 @@
+### OCR PDF Test
+POST http://localhost:8000/ocr
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: image/png
+
+< ./sample11.pdf
+
+### OCR PDF Overlay Test
+POST http://localhost:8000/ocr/ocrmypdf-overlay
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="file.pdf"
+Content-Type: application/pdf
+
+< ./file.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+@baseUrl = http://localhost:8000
+
+### בדיקת OCR עם תמונה או PDF
+POST {{baseUrl}}/ocr/easyocrpdf-overlay
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="tryy1.png"
+Content-Type: image/png
+
+< ./tryy1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

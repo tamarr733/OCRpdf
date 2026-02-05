@@ -9,7 +9,7 @@ pdf2image
 pytesseract
 Pillow
 python-multipart
-ocrmypdf
+ocrmypdf==16.13.0
 opencv-python
 numpy
 reportlab
